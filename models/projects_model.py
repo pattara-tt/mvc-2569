@@ -28,6 +28,7 @@ class ProjectsModel:
             conn.commit()
 
 class ProjectEvaluator:
+    # ตรวจสถานะโครงงาน
     def evaluate(self, project_status: str) -> dict:
         passed = (project_status == "ผ่านแล้ว")
         return {

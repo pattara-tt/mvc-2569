@@ -1,5 +1,4 @@
 import tkinter as tk
-
 from models.database import Database
 from models.user_model import UserModel
 from models.student_model import StudentModel
@@ -18,8 +17,9 @@ from views.students_view import StudentsListView
 from views.evaluate_view import EvaluateView
 from views.result_view import ResultView
 
-
+# ประกอบโครงสร้าเข้าด้วยกัน
 class GraduationMVCApp:
+    # หน้าต่างหลักไว้สลับหน้า
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("ระบบประเมินความพร้อมจบ")
@@ -27,19 +27,19 @@ class GraduationMVCApp:
         self.root.minsize(820, 480)
 
         apply_clean_table_style(self.root)
-
+        # เตรียม database
         self.db = Database("app.db")
         self.db.init_schema()
         self.db.seed_data()
-
+        # เตรียม model
         self.user_model = UserModel(self.db)
         self.student_model = StudentModel(self.db)
         self.credits_model = CreditsModel(self.db)
         self.projects_model = ProjectsModel(self.db)
-
+        # เตรียม controller
         self.result_model = GraduationResultModel(self.db)
         self.evaluator = GraduationEvaluator(self.credits_model, self.projects_model)
-
+        
         self.app = AppController(self.root, views={})
 
         self.auth_controller = AuthController(self.app, self.user_model)
@@ -53,6 +53,7 @@ class GraduationMVCApp:
             self.result_model
         )
 
+        # ผูก view
         self.views = {
             "login": LoginView(self.root, self.app, self.auth_controller),
             "students": StudentsListView(self.root, self.app, self.student_controller),

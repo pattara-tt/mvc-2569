@@ -33,6 +33,7 @@ class GraduationEvaluator:
         self.credit_eval = CreditEvaluator()
         self.project_eval = ProjectEvaluator()
 
+    # รวมผลประเมิน หน่วยกิตและโครงงาน
     def evaluate(self, student_id: str) -> dict:
         total_credits = self.credits_model.get_total_credits(student_id)
         project_status = self.projects_model.get_project_status(student_id)

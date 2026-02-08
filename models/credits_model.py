@@ -23,7 +23,7 @@ class CreditsModel:
 
 class CreditEvaluator:
     MIN_CREDITS = 135
-    # ตรวจผ่านเกณฑ์
+    # ตรวจหน่วยกิตผ่านเกณฑ์
     def evaluate(self, total_credits: int) -> dict:
         passed = total_credits >= self.MIN_CREDITS
         return {

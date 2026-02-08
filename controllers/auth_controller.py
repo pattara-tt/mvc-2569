@@ -6,7 +6,9 @@ class AuthController:
         self.user_model = user_model
 
     def handle_login(self, email: str):
-        email = Validator.validate_email(email)
+        # ตรวจเมล
+        email = Validator.validate_email(email) 
+        # check role
         role = self.user_model.get_role_by_email(email)
         if role != "admin":
             raise ValueError("email นี้ไม่ใช่ admin")

@@ -26,6 +26,7 @@ class StudentModel:
             """, (student_id,)).fetchone()
             return dict(row) if row else None
 
+    # แก้สถานะการเรียน
     def set_status(self, student_id: str, status: str):
         if status not in ("กำลังเรียน", "จบการศึกษา"):
             raise ValueError("สถานะนักศึกษาไม่ถูก")
